@@ -22,7 +22,7 @@ const SideBarProductsInCart = ({ open }) => {
     <div
       className={
         open
-          ? " transition delay-150 duration-300 ease-in-out flex-wrap overflow transfom:right rounded fixed right-0 lg:w-1/5  mr-1 w-3/4 bg-gray-100 h-full mt-2 "
+          ? " transition delay-150 overflow-scroll pb-20 duration-300 ease-in-out flex-wrap overflow transfom:right rounded fixed right-0 lg:w-1/5  mr-1 w-3/4 bg-gray-100 h-full mt-2 "
           : "hidden  "
       }
     >

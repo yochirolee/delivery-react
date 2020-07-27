@@ -1,10 +1,11 @@
 import React, { useState, useContext } from "react";
 import Counter from "./counter/counter";
 import { ProductsInCartContext } from "../../context/productInCartContext";
+import AddedAlert from "../alert/alert";
 
 export default function ProductCard({ product }) {
   const [productsInCart, setProductsInCart] = useContext(ProductsInCartContext);
-
+  const [showAlert, setShowAlert] = useState(false);
   let [value, setValue] = useState(1);
 
   const HandleDecrement = () => {
@@ -18,6 +19,7 @@ export default function ProductCard({ product }) {
     setValue(auxVal);
   };
   const HandleAddProductToCart = (product) => {
+    setShowAlert(true);
     let auxProducts = [];
     auxProducts = [...productsInCart];
 
@@ -31,6 +33,9 @@ export default function ProductCard({ product }) {
       }
       setValue(1);
     }
+  };
+  const changeShowAlert = () => {
+    setShowAlert(false);
   };
 
   return (
@@ -56,15 +61,21 @@ export default function ProductCard({ product }) {
           <p className="font-bold mt-1 ml-2 text-gray-500">CUC</p>
         </div>
       </div>
-      <div className="px-6 py-2 ">
-        <Counter
-          HandleDecrement={HandleDecrement}
-          HandleIncrement={HandleIncrement}
-          HandleAddProductToCart={HandleAddProductToCart}
-          value={value}
-          product={product}
-        />
-      </div>
+      {showAlert ? (
+         <div className="px-6 py-2 ">
+        <AddedAlert changeShowAlert={changeShowAlert} />
+        </div>
+      ) : (
+        <div className="px-6 py-2 ">
+          <Counter
+            HandleDecrement={HandleDecrement}
+            HandleIncrement={HandleIncrement}
+            HandleAddProductToCart={HandleAddProductToCart}
+            value={value}
+            product={product}
+          />
+        </div>
+      )}
     </div>
   );
 }

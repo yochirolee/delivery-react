@@ -26,7 +26,7 @@ export default function Counter({
         </p>
       </div>
       <div className="mx-auto">
-        <button className="border-none px-4 py-1 rounded bg-gray-800 hover:border-transparent"
+        <button className="border-none px-4 py-1 rounded bg-green-700 hover:border-transparent"
         onClick={e=>HandleAddProductToCart(product)}>
           <i className="fa fa-cart-plus text-gray-100"></i>
         </button>
