@@ -44,7 +44,6 @@ export default function Payment() {
         <div className=" lg:pt-20  lg:mx-20 mx-10 pb-10 content-center flex lg:flex-row flex-col">
           {!orderDone ? (
             <>
-             
               <PaymentCart
                 productsInCart={productsInCart}
                 loading={loading}
