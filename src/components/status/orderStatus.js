@@ -4,7 +4,7 @@ import "firebase/firestore";
 import OrderStatusTrack from "./orderStatusTrack";
 
 export default function OrderStatus({ orderId }) {
-  orderId = "zpLIn4J8DKuoE50rUg8R";
+  
   let [orderStatus, setOrderStatus] = useState("");
   let [loading, setLoading] = useState(false);
 

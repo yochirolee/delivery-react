@@ -42,8 +42,9 @@ export default function Payment() {
     <div>
       <main className="  bg-red-700  background h-full lg:h-screen ">
         <div className=" lg:pt-20  lg:mx-20 mx-10 pb-10 content-center flex lg:flex-row flex-col">
-          {orderDone ? (
+          {!orderDone ? (
             <>
+             
               <PaymentCart
                 productsInCart={productsInCart}
                 loading={loading}
@@ -53,7 +54,7 @@ export default function Payment() {
               <PaymentForm HandleSubmit={HandleSubmit} />
             </>
           ) : (
-            <OrderStatus />
+            <OrderStatus orderId={order.id} />
           )}
         </div>
       </main>
