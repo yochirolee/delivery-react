@@ -9,57 +9,26 @@ export default function PaymentForm({ HandleSubmit, loading }) {
 
   return (
     <form
-      class="w-full max-w-lg"
+      class="w-full lg:w-1/2 lg:ml-20 lg:mt-0 mt-10 bg-white rounded p-8"
       form
       id="form-payment"
       onSubmit={handleSubmit(onSubmit)}
     >
-      <div class="flex flex-wrap -mx-3 mb-6">
-        <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-          <label
-            class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-            for="grid-first-name"
-          >
-            Name
-          </label>
-          <input
-            name="name"
-            ref={register({ required: true })}
-            className="appearance-none block w-full bg-gray-200 text-gray-700 border  rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-            aria-describedby="nameValidation"
-          ></input>
-          {errors.name && (
-            <small className="text-red-400">This Field is Required.</small>
-          )}
-        </div>
-        <div class="w-full md:w-1/4 px-1">
-          <label
-            class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-            for="grid-last-name"
-          >
-            Phone
-          </label>
-          <input
-            name="phone"
-            ref={register({ required: true })}
-            className="appearance-none block w-full bg-gray-200 text-gray-700 border  rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-            aria-describedby="nameValidation"
-          ></input>
-          {errors.name && (
-            <small className="text-red-400">This Field is Required.</small>
-          )}
-        </div>
+      <div>
+        <h3 className='pb-2 mb-4 border-b '>Por Favor Rellene sus Datos</h3>
+      </div>
 
-        <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
+      <div class="flex flex-wrap -mx-3 mb-6">
+      <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
           <label
             class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
             for="grid-state"
           >
             Municipio
           </label>
-          <div class="relative">
+          <div class="relative ">
             <select
-              className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              className="block appearance-none w-full bg-gray-100 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-state"
               name="region"
               ref={register({ required: true })}
@@ -79,6 +48,42 @@ export default function PaymentForm({ HandleSubmit, loading }) {
             </div>
           </div>
         </div>
+        <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+          <label
+            class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+            for="grid-first-name"
+          >
+            Name
+          </label>
+          <input
+            name="name"
+            ref={register({ required: true })}
+            className="appearance-none block w-full bg-gray-100 text-gray-700 border  rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+            aria-describedby="nameValidation"
+          ></input>
+          {errors.name && (
+            <small className="text-red-400">This Field is Required.</small>
+          )}
+        </div>
+        <div class="w-full md:w-1/4 px-1">
+          <label
+            class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+            for="grid-last-name"
+          >
+            Phone
+          </label>
+          <input
+            name="phone"
+            ref={register({ required: true })}
+            className="appearance-none block w-full bg-gray-100 text-gray-700 border  rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+            aria-describedby="nameValidation"
+          ></input>
+          {errors.name && (
+            <small className="text-red-400">This Field is Required.</small>
+          )}
+        </div>
+
+      
       </div>
       <div class="flex flex-wrap -mx-3 mb-6">
         <div class="w-full px-3">
@@ -91,7 +96,7 @@ export default function PaymentForm({ HandleSubmit, loading }) {
           <input
             name="address"
             ref={register({ required: true })}
-            className="appearance-none block w-full bg-gray-200 text-gray-700 border  rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+            className="appearance-none block w-full bg-gray-100 text-gray-700 border  rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
             aria-describedby="nameValidation"
           ></input>
           {errors.name && (

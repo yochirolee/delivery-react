@@ -7,13 +7,27 @@ import "@fortawesome/fontawesome-free/js/solid";
 import "@fortawesome/fontawesome-free/js/regular";
 import "@fortawesome/fontawesome-free/js/brands";
 import Products from "./components/products/products";
-import { ProductsProvider } from "./context/productsContext";
+import Payment from "./components/payment/payment";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { ProductsInCartProvider } from "./context/productInCartContext";
+import Header from "./components/header/header";
 
 function App() {
   return (
-    
-      <Products />
- 
+    <Router>
+      <ProductsInCartProvider>
+        <Header />
+        <Switch>
+          <Route path="/payment">
+            <Payment />
+          </Route>
+
+          <Route exact path="/">
+            <Products />
+          </Route>
+        </Switch>{" "}
+      </ProductsInCartProvider>
+    </Router>
   );
 }
 

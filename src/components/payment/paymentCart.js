@@ -1,11 +1,19 @@
 import React from "react";
 
-export default function PaymentCart({ productsInCart, totalPrice, loading }) {
+export default function PaymentCart({ productsInCart, loading }) {
+  const getTotal = () => {
+    let Total = 0;
+    productsInCart.map((product) => {
+      Total += parseFloat(product.price);
+    });
+
+    return Total.toFixed(2);
+  };
   return (
-    <div>
-      <div className="mx-1  flex flex-col ">
+    <div className="w-full lg:w-1/2 lg:ml-10 h-full bg-white rounded">
+      <div className="mx-10 flex flex-col  ">
         {productsInCart.map((product) => (
-          <div className="flex flex-row w-full flex-wrap overflow-scroll">
+          <div className="flex flex-row w-full flex-wrap ">
             <p className=" w-4/6 ml-1 py-2 text-sm text-gray-700  ">
               {product.name}
             </p>
@@ -19,7 +27,7 @@ export default function PaymentCart({ productsInCart, totalPrice, loading }) {
         <p className="mr-2  bold ">Total</p>
         <p className="font-bold">
           <span>$</span>
-          {totalPrice}
+          {getTotal()}
           <span className="font-bold ml-1 text-gray-500">CUC</span>
         </p>
       </div>

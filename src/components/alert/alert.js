@@ -1,22 +1,17 @@
-import React,{useEffect,useState} from 'react';
+import React,{useEffect} from 'react';
 
 export default function AddedAlert({changeShowAlert}){
     let timer = null;
 
-    // First, set the internal `visible` state to negate 
-    // the provided `show` prop
-   
     useEffect(() => {
         setTimer();
       }, []);
     
       function setTimer() {
-        // clear any existing timer
         if (timer != null) {
           clearTimeout(timer)
         }
     
-        // hide after `delay` milliseconds
         timer = setTimeout(() => {
           timer = null;
           changeShowAlert();

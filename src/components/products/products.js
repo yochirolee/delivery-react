@@ -31,8 +31,7 @@ export default function Products() {
 
   return (
     <div>
-      <ProductsInCartProvider>
-        <Header />
+     
         <main className="  bg-red-700  background  ">
           <div className=" flex flex w-full ">
             <div className="pt-20 flex  flex-row mx-auto w-5/6 flex-wrap">
@@ -46,7 +45,7 @@ export default function Products() {
             </div>
           </div>
         </main>
-      </ProductsInCartProvider>
+    
     </div>
   );
 }
