@@ -31,10 +31,7 @@ class Firebase {
     if (!firebase.apps.length) {
       firebase.initializeApp(config);
     }
-    if (!isServer && isProd) {
-      this.analytics = firebase.analytics();
-      this.analytics.logEvent("alive");
-    }
+   
     this.auth = firebase.auth();
     this.db = firebase.firestore();
     auth = this.auth;
