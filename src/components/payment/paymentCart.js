@@ -1,14 +1,10 @@
 import React from "react";
 
-export default function PaymentCart({ productsInCart, loading }) {
-  const getTotal = () => {
-    let Total = 0;
-    productsInCart.map((product) => {
-      Total += parseFloat(product.price);
-    });
+export default function PaymentCart({ productsInCart, loading,getTotal,envio }) {
 
-    return Total.toFixed(2);
-  };
+
+
+  
   return (
     <div className="w-full lg:w-1/2 lg:ml-10 h-full bg-white rounded">
       <div className="mx-10 flex flex-col  ">
@@ -24,6 +20,16 @@ export default function PaymentCart({ productsInCart, loading }) {
         ))}
       </div>
       <div className=" flex flex-row justify-end mr-5 py-6 mr-20  border-0 border-t ">
+        
+        <p className="mr-2  bold ">Envio</p>
+        <p className="font-bold">
+          <span>$</span>
+          {envio}
+          <span className="font-bold ml-1 text-gray-500">CUC</span>
+        </p>
+      </div>
+      <div className=" flex flex-row justify-end mr-5 py-6 mr-20  border-0 border-t ">
+        
         <p className="mr-2  bold ">Total</p>
         <p className="font-bold">
           <span>$</span>

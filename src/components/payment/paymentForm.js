@@ -53,7 +53,7 @@ export default function PaymentForm({ HandleSubmit, loading }) {
             class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
             for="grid-first-name"
           >
-            Name
+            Nombre
           </label>
           <input
             name="name"
@@ -70,7 +70,7 @@ export default function PaymentForm({ HandleSubmit, loading }) {
             class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
             for="grid-last-name"
           >
-            Phone
+            Telefono
           </label>
           <input
             name="phone"
@@ -91,7 +91,7 @@ export default function PaymentForm({ HandleSubmit, loading }) {
             class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
             for="grid-password"
           >
-            Address
+            Direccion de Envio
           </label>
           <input
             name="address"
