@@ -1,9 +1,13 @@
-import React, { useState } from "react";
+import React, { useState,useContext } from "react";
 import SideBarProductsInCart from "../sideBar/SideBardProductsInCart";
 import Avatar from "./avatar/avatar";
 import {Link} from 'react-router-dom';
+import {AuthContext} from '../../context/auth';
+
 
 export default function NavBar() {
+  const {user}=useContext(AuthContext);
+  const { removeAuth } = useContext(AuthContext);
   const [open, setOpen] = useState(false);
   const HandleOpen = () => {
     setOpen(!open);
@@ -17,7 +21,7 @@ export default function NavBar() {
         </Link>
       </div>
       <div>
-        <Avatar HandleOpen={HandleOpen} />
+        <Avatar HandleOpen={HandleOpen} user={user} removeAuth={removeAuth}/>
         <SideBarProductsInCart open={open} HandleOpen={HandleOpen}/>
       </div>
     </nav>

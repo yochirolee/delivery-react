@@ -41,7 +41,7 @@ export default function ProductCard({ product }) {
   return (
     <div className=" rounded bg-white mx-2 shadow-lg w-full lg:w-64 mx-1 lg:mx-2 mb-10">
       <img
-        className="w-48 h-48 cover-fill mx-auto mt-4 "
+        className="w-48 h-48 cover-fill mx-auto mt-4 rounded-full  cover-fill "
         src={`img/${product.pictureUrl}`}
         alt="Pizza"
       />

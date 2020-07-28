@@ -70,7 +70,7 @@ export const isAuthenticated = () => !!getJwt();
 
 export const redirectIfAuthenticated = () => {
   if (isAuthenticated()) {
-    redirect('/main');
+    redirect('/products');
     return true;
   }
   return false;

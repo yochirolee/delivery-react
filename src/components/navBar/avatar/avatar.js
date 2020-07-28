@@ -1,22 +1,35 @@
 import ShoppingCartButton from "../shoppingCartButton/shoppingCartButton";
-import React from "react";
+import React, { useState } from "react";
 
-const Avatar = ({ HandleOpen, user }) => {
+const Avatar = ({ HandleOpen, user,removeAuth }) => {
   //user for show
-  user = true;
+  const [openMenu,setOpenMenu]=useState(false);
+
+ 
 
   return user ? (
     <div className="flex flex-row items-center ">
       <div className="text-white font-bold">
-        <p> Yochiro Lee Cruz</p>
+        <p> {user.displayName}</p>
       </div>
       <div className="bg-white mx-4 rounded-full">
         <img
-          className=" rounded-full  w-8 h-8 "
-          src="img/avatar.jpg"
+          className=" rounded-full relative w-8 h-8 cursor-pointer "
+          src={user.photoURL}
           alt="Avatar"
+          onClick={() => setOpenMenu(!openMenu)}
         />
+        <div
+          className={
+            openMenu
+              ? "flex-wrap overflow  rounded fixed right-0 lg:w-1/5 p-4 w-1/2 bg-gray-100  mt-2 "
+              : "hidden  "
+          }
+        >
+          <button className='bg-red-400' onClick={removeAuth}>Log Out</button>
+        </div>
       </div>
+
       <ShoppingCartButton HandleOpen={HandleOpen} />
     </div>
   ) : (
