@@ -6,7 +6,7 @@ export default function PaymentCart({ productsInCart, loading,getTotal,envio }) 
 
   
   return (
-    <div className="w-full lg:w-1/2 lg:ml-10 h-full bg-white rounded">
+    <div className="w-full lg:w-1/2 lg:ml-10 h-full bg-white rounded mt-20 lg:mt-0">
       <div className="mx-10 flex flex-col  ">
         {productsInCart.map((product) => (
           <div className="flex flex-row w-full flex-wrap ">
