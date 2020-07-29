@@ -26,7 +26,7 @@ const Avatar = ({ HandleOpen, user,removeAuth }) => {
               : "hidden  "
           }
         >
-          <button className='bg-red-400' onClick={removeAuth}>Log Out</button>
+          <button className='bg-red-700 p-2 w-full border text-white mx-auto' onClick={removeAuth}>Salir</button>
         </div>
       </div>
 

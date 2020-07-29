@@ -1,9 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import { AuthContext } from "../../context/auth";
-import { redirectIfAuthenticated } from "../../lib/session";
 import { Firebase } from "../../lib/firebase";
 import {
-  BrowserRouter as Router,
   useHistory,
   useLocation,
 } from "react-router-dom";
