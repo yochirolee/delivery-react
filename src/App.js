@@ -39,6 +39,9 @@ function App() {
           <PrivateRoute  path="/products">
             <Products />
           </PrivateRoute>
+          <Route path="*">
+            <Login/>
+            </Route>
         </Switch>
       </ProductsInCartProvider>
     </Router>
