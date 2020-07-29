@@ -12,16 +12,13 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link,
-  Redirect,
-  useHistory,
-  useLocation,
+  
 } from "react-router-dom";
 import Login from './components/login/login';
 import { ProductsInCartProvider } from "./context/productInCartContext";
 import {AuthProvider} from './context/auth';
 import Header from "./components/header/header";
-import { isAuthenticated } from "./lib/session";
+import PrivateRoute from './components/login/privateRoute';
 
 
 
@@ -49,26 +46,5 @@ function App() {
   );
 }
 
-
-function PrivateRoute({ children, ...rest }) {
- 
-  return (
-    <Route
-      {...rest}
-      render={({ location }) =>
-       isAuthenticated ? (
-          children
-        ) : (
-          <Redirect
-            to={{
-              pathname: "/",
-              state: { from: location },
-            }}
-          />
-        )
-      }
-    />
-  );
-}
 
 export default App;

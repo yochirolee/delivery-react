@@ -1,5 +1,6 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext,useEffect } from "react";
 import { AuthContext } from "../../context/auth";
+import { redirectIfAuthenticated } from '../../lib/session';
 import { Firebase } from "../../lib/firebase";
 import {
   BrowserRouter as Router,
@@ -12,10 +13,24 @@ export default function Login() {
   const firebase = new Firebase();
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-  const { activateAuth } = useContext(AuthContext);
+  const {activateAuth, userLoaded } = useContext(AuthContext);
   let history = useHistory();
   let location = useLocation();
 
+  useEffect(() => {
+    redirectIfAuthenticated();
+  }, []);
+  
+  const redirectIfAuthenticated=()=>{
+  
+        if (userLoaded) {
+            history.replace("/products");
+          return true;
+        }
+        return false;
+      }
+ 
+ 
   const saveAuthAndRedirect = (data) => {
     try {
       const { user } = data;
