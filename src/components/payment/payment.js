@@ -4,9 +4,10 @@ import PaymentCart from "./paymentCart";
 import { ProductsInCartContext } from "../../context/productInCartContext";
 import OrderStatus from "../status/orderStatus";
 import { Firebase } from "../../lib/firebase";
+import firebase from "firebase";
 
 export default function Payment() {
-  const firebase = new Firebase();
+  const firebaseC = new Firebase();
   const [productsInCart, setProductsInCart] = useContext(ProductsInCartContext);
   const [loading, setLoading] = useState(false);
   const [envio, setEnvio] = useState(1);
@@ -26,10 +27,10 @@ export default function Payment() {
     setLoading(true);
     try {
       data.products = productsInCart;
-      data.date = Date.now();
+      data.date = firebase.firestore.FieldValue.serverTimestamp();
       data.status = "New";
       data.totalPrice = getTotal();
-      setOrder(await firebase.saveData({ collection: "orders", data: data }));
+      setOrder(await firebaseC.saveData({ collection: "orders", data: data }));
       document.getElementById("form-payment").reset();
       setOrderDone(true);
     } catch {
