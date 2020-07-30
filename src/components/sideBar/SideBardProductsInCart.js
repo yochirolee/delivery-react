@@ -35,7 +35,7 @@ const SideBarProductsInCart = ({ open, HandleOpen }) => {
         >
           <img
             className="w-8 h-8 cover-fill mx-auto rounded-full "
-            src={`img/${product.pictureUrl}`}
+            src={product.pictureUrl}
             alt="Pizza"
           />
           <p className=" w-4/6 ml-1 py-2 text-sm font-bold text-gray-700  ">
@@ -61,7 +61,10 @@ const SideBarProductsInCart = ({ open, HandleOpen }) => {
           </p>
         </div>
         <Link className="w-48 mx-auto" to="/payment">
-          <button onClick={HandleOpen} className=" bg-gray-600 w-48 mx-auto mt-2 rounded  shadow-2xl h-10 text-white">
+          <button
+            onClick={HandleOpen}
+            className=" bg-gray-600 w-48 mx-auto mt-2 rounded  shadow-2xl h-10 text-white"
+          >
             Ordenar
           </button>
         </Link>
