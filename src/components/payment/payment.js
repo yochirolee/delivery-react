@@ -5,8 +5,11 @@ import { ProductsInCartContext } from "../../context/productInCartContext";
 import OrderStatus from "../status/orderStatus";
 import { Firebase } from "../../lib/firebase";
 import firebase from "firebase";
+import {AuthContext} from '../../context/auth';
+
 
 export default function Payment() {
+  const {user}=useContext(AuthContext);
   const firebaseC = new Firebase();
   const [productsInCart, setProductsInCart] = useContext(ProductsInCartContext);
   const [loading, setLoading] = useState(false);
@@ -51,7 +54,7 @@ export default function Payment() {
                 getTotal={getTotal}
                 envio={envio}
               />
-              <PaymentForm HandleSubmit={HandleSubmit} />
+              <PaymentForm HandleSubmit={HandleSubmit} user={user} />
             </>
           ) : (
             <OrderStatus orderId={order.id} />

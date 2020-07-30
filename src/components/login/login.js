@@ -1,10 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import { AuthContext } from "../../context/auth";
 import { Firebase } from "../../lib/firebase";
-import {
-  useHistory,
-  useLocation,
-} from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import GoogleButtonLogin from "./googleButtonLogin";
 
 export default function Login() {
@@ -50,6 +47,14 @@ export default function Login() {
     });
   };
 
+  const authWithFacebook = () => {
+    setLoading(true);
+    firebase.doAuthWithFacebook().then((resp) => {
+      setLoading(false);
+      saveAuthAndRedirect(resp);
+    });
+  };
+
   return (
     <div className="bg-red-700  background h-screen">
       <div className="flex lg:flex-row flex-col mx-4">
@@ -59,9 +64,21 @@ export default function Login() {
           <div className="pt-20 mx-auto ">
             <div className="lg:w-1/2 w-full justify-center mx-auto rounded bg-white p-4">
               {loading ? (
-                <div className='w-full'>...Login with Google please wait</div>
+                <div className="w-full">...Login please wait</div>
               ) : (
-                <GoogleButtonLogin authWithGoogle={authWithGoogle} />
+                <div>
+                 
+                  <div className=" mx-auto mb-4">
+                    <i className="fab fa-facebook text-3xl pr-2 pt-3 mr-2  "></i>
+                    <button
+                      className="bg-blue-700  text-white w-3/4 py-2"
+                      onClick={authWithFacebook}
+                    >
+                      Facebook login
+                    </button>
+                  </div>
+                   <GoogleButtonLogin authWithGoogle={authWithGoogle} />
+                </div>
               )}
             </div>
           </div>

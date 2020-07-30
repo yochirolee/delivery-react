@@ -1,7 +1,8 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 
-export default function PaymentForm({ HandleSubmit, loading }) {
+export default function PaymentForm({ HandleSubmit, loading, user }) {
+  console.log(user, "from paymentForm");
   const { register, handleSubmit, errors } = useForm();
   const onSubmit = (data) => {
     HandleSubmit(data);
@@ -14,12 +15,18 @@ export default function PaymentForm({ HandleSubmit, loading }) {
       id="form-payment"
       onSubmit={handleSubmit(onSubmit)}
     >
-      <div>
-        <h3 className='pb-2 mb-4 border-b '>Por Favor Rellene sus Datos</h3>
+      <div className="bg-white mx-4 rounded-full">
+        
+        <h3 className="pb-2 mb-4 border-b ">Por Favor Rellene sus Datos</h3>
+        <img
+          className=" rounded-full mb-4 relative w-20 h-20 mx-auto cursor-pointer "
+          src={user.photoURL}
+          alt="Avatar"
+        />
       </div>
 
       <div class="flex flex-wrap -mx-3 mb-6">
-      <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
+        <div class="w-full md:w-1/4 px-3 mb-6 md:mb-0">
           <label
             class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
             for="grid-state"
@@ -57,6 +64,7 @@ export default function PaymentForm({ HandleSubmit, loading }) {
           </label>
           <input
             name="name"
+            value={user.displayName ? user.displayName :null}
             ref={register({ required: true })}
             className="appearance-none block w-full bg-gray-100 text-gray-700 border  rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
             aria-describedby="nameValidation"
@@ -74,6 +82,7 @@ export default function PaymentForm({ HandleSubmit, loading }) {
           </label>
           <input
             name="phone"
+            value={user.phoneNumber ? user.phoneNumber : (null)}
             ref={register({ required: true })}
             className="appearance-none block w-full bg-gray-100 text-gray-700 border  rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
             aria-describedby="nameValidation"
@@ -82,8 +91,6 @@ export default function PaymentForm({ HandleSubmit, loading }) {
             <small className="text-red-400">This Field is Required.</small>
           )}
         </div>
-
-      
       </div>
       <div class="flex flex-wrap -mx-3 mb-6">
         <div class="w-full px-3">

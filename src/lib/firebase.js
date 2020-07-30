@@ -298,6 +298,50 @@ class Firebase {
     });
   };
 
+  
+  // ** Auth with google **
+  doAuthWithFacebook = () => {
+    const provider = new firebase.auth.FacebookAuthProvider();
+    return new Promise((resolve, reject) => {
+      firebase
+        .auth()
+        .signInWithPopup(provider)
+        .then(async (resp) => {
+          if (resp) {
+            let { user } = resp;
+            const { additionalUserInfo } = resp;
+            if (additionalUserInfo.isNewUser) {
+              const sanitizeUser = this.sanitizeUser(user);
+              const userToSave = {
+                ...sanitizeUser,
+                createdAt: new Date(),
+              };
+              await this.saveData({
+                collection: "users",
+                data: userToSave,
+                id: user.uid,
+              });
+              console.log("user saved in users collection");
+            }
+            const { idToken } = resp.credential;
+            console.log({ idToken });
+            user = await this.fillUserData(this.sanitizeUser(user));
+            console.log({ user });
+            resolve({ user, idToken });
+          }
+          reject(new Error("Sorry, something went wrong. Please try later"));
+        })
+        .catch((error) => {
+          const { code } = error;
+          let message = "Sorry, something went wrong. Please try later";
+          if (code) {
+            message = get(firebaseErrors, code);
+          }
+          reject(new Error(message));
+        });
+    });
+  };
+
   // ** Auth with github **
   doAuthWithGithub = () => {
     const provider = new firebase.auth.GithubAuthProvider();
