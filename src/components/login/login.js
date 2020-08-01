@@ -3,6 +3,8 @@ import { AuthContext } from "../../context/auth";
 import { Firebase } from "../../lib/firebase";
 import { useHistory, useLocation } from "react-router-dom";
 import GoogleButtonLogin from "./googleButtonLogin";
+import FacebookButtonLogin from "./facebookButtonLogin";
+import Alert from "../alert/alert";
 
 export default function Login() {
   const firebase = new Firebase();
@@ -11,6 +13,7 @@ export default function Login() {
   const { activateAuth, userLoaded } = useContext(AuthContext);
   let history = useHistory();
   let location = useLocation();
+  const [showAlert, setShowAlert] = useState(false);
 
   useEffect(() => {
     redirectIfAuthenticated();
@@ -33,7 +36,8 @@ export default function Login() {
       setLoading(false);
       history.replace("/products");
     } catch (error) {
-      console.log({ error });
+      const { message } = error;
+      setErrorMessage(message);
     }
   };
 
@@ -41,18 +45,37 @@ export default function Login() {
 
   const authWithGoogle = () => {
     setLoading(true);
-    firebase.doAuthWithGoogle().then((resp) => {
-      setLoading(false);
-      saveAuthAndRedirect(resp);
-    });
+    firebase
+      .doAuthWithGoogle()
+      .then((resp) => {
+        setLoading(false);
+        saveAuthAndRedirect(resp);
+      })
+      .catch((error) => {
+        const { message } = error;
+        setLoading(false);
+        setErrorMessage(message);
+        setShowAlert(true);
+      });
   };
 
   const authWithFacebook = () => {
     setLoading(true);
-    firebase.doAuthWithFacebook().then((resp) => {
-      setLoading(false);
-      saveAuthAndRedirect(resp);
-    });
+    firebase
+      .doAuthWithFacebook()
+      .then((resp) => {
+        setLoading(false);
+        saveAuthAndRedirect(resp);
+      })
+      .catch((error) => {
+        const { message } = error;
+        setLoading(false);
+        setErrorMessage(message);
+        setShowAlert(true);
+      });
+  };
+  const changeShowAlert = () => {
+    setShowAlert(false);
   };
 
   return (
@@ -67,18 +90,19 @@ export default function Login() {
                 <div className="w-full">...Login please wait</div>
               ) : (
                 <div>
-                 
-                  <div className=" mx-auto mb-4">
-                    <i className="fab fa-facebook text-3xl pr-2 pt-3 mr-2  "></i>
-                    <button
-                      className="bg-blue-700  text-white w-3/4 py-2"
-                      onClick={authWithFacebook}
-                    >
-                      Facebook login
-                    </button>
-                  </div>
-                   <GoogleButtonLogin authWithGoogle={authWithGoogle} />
+                  <FacebookButtonLogin authWithFacebook={authWithFacebook} />
+                  <GoogleButtonLogin authWithGoogle={authWithGoogle} />
                 </div>
+              )}
+              {showAlert ? (
+                <div className='mt-4'>
+                  <Alert
+                    message={errorMessage}
+                    changeShowAlert={changeShowAlert}
+                  />
+                </div>
+              ) : (
+                <></>
               )}
             </div>
           </div>

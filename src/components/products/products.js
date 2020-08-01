@@ -9,10 +9,8 @@ import firebase from "../../firebase";
 export default function Products() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
- 
 
   useEffect(() => {
-    
     setLoading(true);
     const unsubcribe = firebase
       .firestore()
@@ -25,13 +23,11 @@ export default function Products() {
         setProducts(newProducts);
         setLoading(false);
       });
-
     return () => unsubcribe();
   }, []);
 
   return (
     <div>
-     
         <main className="  bg-red-800   background  ">
           <div className=" flex flex  w-full  ">
             <div className="pt-20 flex   flex-row mx-auto w-5/6 flex-wrap">

@@ -1,11 +1,10 @@
 import ShoppingCartButton from "../shoppingCartButton/shoppingCartButton";
 import React, { useState } from "react";
 
-const Avatar = ({ HandleOpen, user,removeAuth }) => {
+const Avatar = ({ HandleOpen, user, removeAuth }) => {
   //user for show
-  const [openMenu,setOpenMenu]=useState(false);
-
- 
+  const [openMenu, setOpenMenu] = useState(false);
+  
 
   return user ? (
     <div className="flex flex-row items-center ">
@@ -20,13 +19,19 @@ const Avatar = ({ HandleOpen, user,removeAuth }) => {
           onClick={() => setOpenMenu(!openMenu)}
         />
         <div
+         
           className={
             openMenu
               ? "flex-wrap overflow  rounded fixed right-0 lg:w-1/5 p-4 w-1/2 bg-gray-100  mt-2 "
               : "hidden  "
           }
         >
-          <button className='bg-red-700 p-2 w-full border text-white mx-auto' onClick={removeAuth}>Salir</button>
+          <button  onMouseLeave={() => setOpenMenu(false)}
+            className="bg-red-700 p-2 w-full border text-white mx-auto"
+            onClick={removeAuth}
+          >
+            Salir
+          </button>
         </div>
       </div>
 

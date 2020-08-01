@@ -7,6 +7,7 @@ export default function ProductCard({ product }) {
   const [productsInCart, setProductsInCart] = useContext(ProductsInCartContext);
   const [showAlert, setShowAlert] = useState(false);
   let [value, setValue] = useState(1);
+  const message='Producto Adicionado';
 
   const HandleDecrement = () => {
     let auxVal = value;
@@ -61,21 +62,22 @@ export default function ProductCard({ product }) {
           <p className="font-bold mt-1 ml-2 text-gray-500">CUC</p>
         </div>
       </div>
-      {showAlert ? (
+     
+        <div className="px-6 py-2 ">
+        {showAlert ? (
          <div className="px-6 py-2 ">
-        <AddedAlert changeShowAlert={changeShowAlert} />
+        <AddedAlert changeShowAlert={changeShowAlert} message={message} />
         </div>
       ) : (
-        <div className="px-6 py-2 ">
           <Counter
             HandleDecrement={HandleDecrement}
             HandleIncrement={HandleIncrement}
             HandleAddProductToCart={HandleAddProductToCart}
             value={value}
             product={product}
-          />
+          />    )}
         </div>
-      )}
+  
     </div>
   );
 }

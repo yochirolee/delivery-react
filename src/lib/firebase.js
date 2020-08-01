@@ -117,22 +117,6 @@ class Firebase {
 
 
 
-  GetSnapShot = async (collection) => {
-    return new Promise(async (resolve) => {
-      firebase
-        .firestore()
-        .collection(collection)
-        .onSnapshot((snapshot) => {
-          const data = snapshot.docs.map((doc) => ({
-            id: doc.id,
-            ...doc.data(),
-          }));
-          console.log('snap',data);
-          resolve(data);
-        });
-    });
-  };
-
   /**
    * Universal collection data
    * @param collection [collection name]
@@ -293,6 +277,7 @@ class Firebase {
           if (code) {
             message = get(firebaseErrors, code);
           }
+        
           reject(new Error(message));
         });
     });

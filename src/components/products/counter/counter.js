@@ -5,6 +5,7 @@ export default function Counter({
   HandleIncrement,
   product,
   value,
+  
 }) {
 
 
