@@ -56,12 +56,12 @@ export default function OrderStatus({ orderId }) {
             </span>
           </div>
           <div className="flex flex-row mt-2 text-2xl justify-center bg-gray-800 text-center text-white ">
-            <p className="">Total a Pagar: </p>
+            <p className="">Total a Pagar : </p>
             <span className="block uppercase ml-2 tracking-wide   font-bold mb-2">
               {orderStatus.totalPrice} cuc
             </span>
           </div>
-         <div className='h-64 overflow-y-scroll'>
+         <div className='h-64 overflow-y-auto'>
           <p className="border-b font-bold my-2 text-center ">
             Productos de su Orden
           </p>
