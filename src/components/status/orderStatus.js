@@ -55,8 +55,8 @@ export default function OrderStatus({ orderId }) {
               <p>{orderStatus.address}</p>
             </span>
           </div>
-          <div className="flex flex-row mt-2 text-2xl justify-center bg-gray-800 text-center text-white ">
-            <p className="">Total a Pagar : </p>
+          <div className="flex lg:flex-row flex-col mt-2 lg:text-2xl justify-center bg-gray-800 text-center text-white ">
+            <p className="">Total a Pagar </p>
             <span className="block uppercase ml-2 tracking-wide   font-bold mb-2">
               {orderStatus.totalPrice} cuc
             </span>
