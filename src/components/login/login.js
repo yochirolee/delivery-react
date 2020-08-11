@@ -5,11 +5,12 @@ import { useHistory, useLocation } from "react-router-dom";
 import GoogleButtonLogin from "./googleButtonLogin";
 import FacebookButtonLogin from "./facebookButtonLogin";
 import Alert from "../alert/alert";
+import Spiner from "../Spiner/spiner";
 
 export default function Login() {
   const firebase = new Firebase();
   const [loading, setLoading] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState();
   const { activateAuth, userLoaded } = useContext(AuthContext);
   let history = useHistory();
   let location = useLocation();
@@ -17,7 +18,7 @@ export default function Login() {
 
   useEffect(() => {
     redirectIfAuthenticated();
-  }, []);
+  });
 
   const redirectIfAuthenticated = () => {
     if (userLoaded) {
@@ -85,26 +86,29 @@ export default function Login() {
 
         <div className="lg:w-1/2   ">
           <div className="pt-20 mx-auto ">
-            <div className="lg:w-1/2 w-full justify-center mx-auto rounded bg-white p-4">
-              {loading ? (
-                <div className="w-full">...Login please wait</div>
-              ) : (
-                <div>
+            {loading ? (
+              <div className="items-justified-center">
+                <Spiner />
+                <p className="mx-auto text-center font-bold mt-8 text-white">...Loading</p>
+              </div>
+            ) : (
+              <div>
+                <div className="lg:w-1/2 w-full justify-center mx-auto rounded bg-white p-4">
                   <FacebookButtonLogin authWithFacebook={authWithFacebook} />
                   <GoogleButtonLogin authWithGoogle={authWithGoogle} />
                 </div>
-              )}
-              {showAlert ? (
-                <div className='mt-4'>
-                  <Alert
-                    message={errorMessage}
-                    changeShowAlert={changeShowAlert}
-                  />
-                </div>
-              ) : (
-                <></>
-              )}
-            </div>
+              </div>
+            )}
+            {showAlert ? (
+              <div className="mt-4 h-8 w-64 mx-auto">
+                <Alert
+                  message={errorMessage}
+                  changeShowAlert={changeShowAlert}
+                />
+              </div>
+            ) : (
+              <></>
+            )}
           </div>
         </div>
       </div>

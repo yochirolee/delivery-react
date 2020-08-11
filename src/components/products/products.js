@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Loading from "../loading/loading";
-import Header from "../header/header";
-import { ProductsInCartProvider } from "../../context/productInCartContext";
 import ProductCard from "../products/productCard";
 import firebase from "../../firebase";
+import {removeLocaleStorage} from '../../lib/session';
 
 
 export default function Products() {
@@ -11,6 +10,7 @@ export default function Products() {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    removeLocaleStorage('userOrder');
     setLoading(true);
     const unsubcribe = firebase
       .firestore()
@@ -23,6 +23,7 @@ export default function Products() {
         setProducts(newProducts);
         setLoading(false);
       });
+
     return () => unsubcribe();
   }, []);
 

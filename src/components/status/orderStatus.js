@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useContext } from "react";
+import { ProductsInCartContext } from "../../context/productInCartContext";
 import firebase from "firebase/app";
 import "firebase/firestore";
 import OrderStatusTrack from "./orderStatusTrack";
@@ -7,9 +8,11 @@ export default function OrderStatus({ orderId }) {
   
   let [orderStatus, setOrderStatus] = useState("");
   let [loading, setLoading] = useState(false);
+  const [productsInCart, setProductsInCart] = useContext(ProductsInCartContext);
 
   useEffect(() => {
     setLoading(true);
+    setProductsInCart([]);
     const unsubcribe = firebase
       .firestore()
       .collection("orders")
@@ -25,9 +28,7 @@ export default function OrderStatus({ orderId }) {
 
   return (
     <div className="bg-white mx-auto rounded p-4 lg:mt-0 mt-20 ">
-      <p className="text-xs my-2">
-        Para conocer el estado de su orden, no cierre esta pagina
-      </p>
+    
       {loading ? (
         <div className='text-center'>...Loading</div>
       ) : (
@@ -54,13 +55,13 @@ export default function OrderStatus({ orderId }) {
               <p>{orderStatus.address}</p>
             </span>
           </div>
-          <div className="flex flex-row mt-2">
-            <p className="text-xs">Total a Pagar: </p>
-            <span className="block uppercase ml-2 tracking-wide text-gray-700 text-xs flex flex-row font-bold mb-2">
-              {orderStatus.totalPrice}
+          <div className="flex flex-row mt-2 text-2xl justify-center bg-gray-800 text-center text-white ">
+            <p className="">Total a Pagar: </p>
+            <span className="block uppercase ml-2 tracking-wide   font-bold mb-2">
+              {orderStatus.totalPrice} cuc
             </span>
           </div>
-
+         <div className='h-64 overflow-y-scroll'>
           <p className="border-b font-bold my-2 text-center ">
             Productos de su Orden
           </p>
@@ -68,17 +69,20 @@ export default function OrderStatus({ orderId }) {
             orderStatus.products.map((product, index) => (
               <div
                 key={index}
-                className="flex flex-row justify-around tracking-wide text-gray-700 text-xs font-bold py-2 mr-4 border-t"
+                className="flex flex-row  justify-between tracking-wide text-gray-700 text-xs font-bold py-2 mr-4 border-b border-dashed"
               >
                 <p className="">{product.name}</p>
                 <p>{product.price}</p>
+               
               </div>
             ))
           ) : (
             <p></p>
           )}
         </div>
+        </div>
       )}
+      
     </div>
   );
 }
