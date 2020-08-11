@@ -74,7 +74,7 @@ export default function Payment() {
   return (
     <div>
       <main className="  bg-red-700  background min-h-screen ">
-        <div className=" lg:pt-20  lg:mx-20 mx-10 pb-10 content-center flex lg:flex-row flex-col">
+        <div className=" lg:pt-20  lg:mx-20 mx-4 pb-10 content-center flex lg:flex-row flex-col">
           {!orderDone ? (
             <>
               <PaymentCart
